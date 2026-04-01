@@ -1,4 +1,4 @@
-import { Route, Switch, Link } from "wouter";
+import { Route, Switch } from "wouter";
 import Home from "./pages/Home";
 import Shipyard from "./pages/Shipyard";
 import Design from "./pages/Design";
