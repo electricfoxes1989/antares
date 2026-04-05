@@ -3,10 +3,14 @@
 @theme {
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
-  --color-navy: #040f29;
-  --color-navy-light: #0a1d42;
-  --color-gold: #C9A96E;
-  --color-gold-light: #d4b97e;
+  --color-obsidian: #0a0a0a;
+  --color-charcoal: #1a1a1a;
+  --color-graphite: #2a2a2a;
+  --color-stone: #888;
+  --color-sand: #c4b69c;
+  --color-sand-light: #d4c6ac;
+  --color-cream: #f5f2ed;
+  --color-ivory: #faf8f5;
 }
 
 @layer base {
@@ -15,9 +19,13 @@
   }
   body {
     font-family: var(--font-sans);
-    color: #1a1a1a;
-    background: #fff;
+    color: #e8e4de;
+    background: #0a0a0a;
     margin: 0;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: rgba(196, 182, 156, 0.3);
   }
 }

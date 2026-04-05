@@ -14,40 +14,44 @@ export default function Gallery() {
   return (
     <>
       {/* ━━ HERO ━━ */}
-      <section className="bg-navy pt-32 pb-16 md:pt-40 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
+      <section className="bg-obsidian pt-36 pb-20 md:pt-44 md:pb-28">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <Reveal>
-            <p className="text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Photography</p>
-            <h1 className="font-serif text-white text-4xl md:text-6xl tracking-tight">
+            <p className="text-sand text-[10px] tracking-[0.4em] uppercase mb-5">Photography</p>
+            <h1 className="font-serif text-white text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-tight">
               Gallery
             </h1>
-            <p className="text-white/50 text-lg mt-4">{yacht.name} &middot; Exterior & Interior</p>
+            <p className="text-white/20 text-[14px] mt-5 font-light">
+              {yacht.name} &middot; Exterior & Interior
+            </p>
           </Reveal>
         </div>
       </section>
 
       {/* ━━ FILTER ━━ */}
-      <section className="bg-white border-b border-black/[0.06] sticky top-16 md:top-20 z-30">
-        <div className="max-w-7xl mx-auto px-6 md:px-16 py-4 flex items-center gap-4">
+      <section className="border-y border-white/[0.04] sticky top-20 md:top-24 z-30 bg-obsidian/95 backdrop-blur-md">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-5 flex items-center gap-6">
           {(["all", "Exterior", "Interior"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`text-xs tracking-[0.15em] uppercase px-4 py-2 transition-colors ${
-                filter === f ? "bg-navy text-white" : "text-[#999] hover:text-[#1a1a1a]"
+              className={`text-[10px] tracking-[0.2em] uppercase px-4 py-2 transition-all duration-300 ${
+                filter === f
+                  ? "text-sand border-b border-sand"
+                  : "text-white/20 hover:text-white/40"
               }`}
             >
               {f === "all" ? "All" : f}
             </button>
           ))}
-          <span className="text-xs text-[#ccc] ml-auto">{filtered.length} photos</span>
+          <span className="text-[11px] text-white/10 ml-auto">{filtered.length} photos</span>
         </div>
       </section>
 
       {/* ━━ GRID ━━ */}
-      <section className="py-12 md:py-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+      <section className="py-16 md:py-24">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
             {filtered.map((img, i) => (
               <Reveal key={`${filter}-${i}`} delay={i * 0.03}>
                 <button
@@ -57,12 +61,14 @@ export default function Gallery() {
                   <img
                     src={img.url}
                     alt={img.label}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                  <span className="absolute bottom-3 left-4 text-white text-xs tracking-[0.15em] uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                    {img.label}
-                  </span>
+                  <div className="absolute inset-0 bg-obsidian/0 group-hover:bg-obsidian/40 transition-colors duration-500" />
+                  <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="text-white text-[10px] tracking-[0.2em] uppercase">
+                      {img.label}
+                    </span>
+                  </div>
                 </button>
               </Reveal>
             ))}
@@ -77,43 +83,45 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-obsidian/95 backdrop-blur-sm flex items-center justify-center"
             onClick={() => setLightboxIdx(null)}
           >
             <button
-              className="absolute top-6 right-6 text-white/70 hover:text-white z-50"
+              className="absolute top-8 right-8 text-white/30 hover:text-white transition-colors z-50"
               onClick={() => setLightboxIdx(null)}
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2"
+              className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20 hover:text-white/60 p-2 transition-colors"
               onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + yacht.images.length) % yacht.images.length); }}
             >
-              <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
             </button>
             <motion.img
               key={lightboxIdx}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
               src={yacht.images[lightboxIdx].url}
               alt={yacht.images[lightboxIdx].label}
               className="max-h-[85vh] max-w-[90vw] object-contain"
               onClick={(e) => e.stopPropagation()}
             />
             <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2"
+              className="absolute right-6 top-1/2 -translate-y-1/2 text-white/20 hover:text-white/60 p-2 transition-colors"
               onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % yacht.images.length); }}
             >
-              <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={1} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
               </svg>
             </button>
-            <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 text-sm tracking-widest">
+            <p className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/15 text-[11px] tracking-[0.3em]">
               {lightboxIdx + 1} / {yacht.images.length}
             </p>
           </motion.div>

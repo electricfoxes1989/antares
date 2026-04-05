@@ -10,21 +10,21 @@ export default function Design() {
   return (
     <>
       {/* ━━ HERO ━━ */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
+      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
         <img
           src={yacht.images[0]?.url || yacht.heroImage}
           alt={`${yacht.name} — designed by ${navalArchitect.name}`}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/60 via-navy/20 to-navy/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/50 via-obsidian/20 to-obsidian" />
         <div className="absolute inset-0 flex items-end">
-          <div className="max-w-7xl mx-auto px-6 md:px-16 pb-16 md:pb-24 w-full">
+          <div className="max-w-[1400px] mx-auto px-8 md:px-16 pb-20 md:pb-28 w-full">
             <Reveal>
-              <p className="text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Architecture & Design</p>
-              <h1 className="font-serif text-white text-4xl md:text-6xl lg:text-7xl tracking-tight">
+              <p className="text-sand text-[10px] tracking-[0.4em] uppercase mb-5">Architecture & Design</p>
+              <h1 className="font-serif text-white text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-tight">
                 The Design Story
               </h1>
-              <p className="text-white/60 text-lg mt-3">
+              <p className="text-white/30 text-[14px] mt-5 font-light">
                 Naval architecture by {navalArchitect.name} &middot; Interiors by {interiorDesigner.name}
               </p>
             </Reveal>
@@ -33,40 +33,40 @@ export default function Design() {
       </section>
 
       {/* ━━ NAVAL ARCHITECT ━━ */}
-      <section className="py-28 md:py-40">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
-          <div className="grid md:grid-cols-5 gap-12 md:gap-20">
-            <Reveal className="md:col-span-2">
-              <p className="text-gold text-[11px] tracking-[0.3em] uppercase mb-5">Naval Architect</p>
-              <h2 className="font-serif text-[30px] md:text-[44px] leading-[1.1] tracking-tight mb-6">
+      <section className="py-32 md:py-48">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16">
+          <div className="grid md:grid-cols-12 gap-12 md:gap-6">
+            <Reveal className="md:col-span-4">
+              <p className="text-sand text-[10px] tracking-[0.4em] uppercase mb-8">Naval Architect</p>
+              <h2 className="font-serif text-[clamp(2rem,3.5vw,3rem)] leading-[1.05] tracking-tight text-white mb-10">
                 {navalArchitect.name}
               </h2>
-              <div className="space-y-3 mt-8">
-                <div className="flex justify-between py-3 border-b border-black/[0.06]">
-                  <span className="text-[#999] text-sm">Based</span>
-                  <span className="text-[#1a1a1a] text-sm font-medium">{navalArchitect.location}</span>
+              <div className="space-y-0 border-t border-white/[0.06]">
+                <div className="flex justify-between py-4 border-b border-white/[0.04]">
+                  <span className="text-white/20 text-[13px]">Based</span>
+                  <span className="text-white/50 text-[13px] font-light text-right">{navalArchitect.location}</span>
                 </div>
-                <div className="flex justify-between py-3 border-b border-black/[0.06]">
-                  <span className="text-[#999] text-sm">Founded</span>
-                  <span className="text-[#1a1a1a] text-sm font-medium">{navalArchitect.founded}</span>
+                <div className="flex justify-between py-4 border-b border-white/[0.04]">
+                  <span className="text-white/20 text-[13px]">Founded</span>
+                  <span className="text-white/50 text-[13px] font-light">{navalArchitect.founded}</span>
                 </div>
               </div>
-              <div className="mt-8">
-                <p className="text-[#999] text-[10px] tracking-[0.25em] uppercase mb-4">Notable Designs</p>
-                <ul className="space-y-2">
+              <div className="mt-10">
+                <p className="text-white/20 text-[9px] tracking-[0.3em] uppercase mb-5">Notable Designs</p>
+                <ul className="space-y-3">
                   {navalArchitect.notableDesigns.map((d) => (
-                    <li key={d} className="text-[#6b6b6b] text-sm font-light flex items-center gap-2">
-                      <span className="w-1 h-1 rounded-full bg-gold flex-shrink-0" />
+                    <li key={d} className="text-white/30 text-[13px] font-light flex items-center gap-3">
+                      <span className="w-1 h-1 rounded-full bg-sand/50 flex-shrink-0" />
                       {d}
                     </li>
                   ))}
                 </ul>
               </div>
             </Reveal>
-            <Reveal delay={0.1} className="md:col-span-3">
+            <Reveal delay={0.1} className="md:col-span-7 md:col-start-6">
               <div className="space-y-6">
                 {navalArchitect.description.map((para, i) => (
-                  <p key={i} className="text-[#6b6b6b] text-[15px] leading-[1.95] font-light">{para}</p>
+                  <p key={i} className="text-white/30 text-[14px] leading-[2] font-light">{para}</p>
                 ))}
               </div>
             </Reveal>
@@ -76,29 +76,30 @@ export default function Design() {
 
       {/* ━━ FULL-BLEED ━━ */}
       <Reveal>
-        <div className="relative w-full h-[50vh] md:h-[65vh]">
+        <div className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden">
           <img src={yacht.images[4]?.url || yacht.heroImage} alt={`${yacht.name} interior`} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-obsidian/20" />
         </div>
       </Reveal>
 
       {/* ━━ INTERIOR DESIGNER ━━ */}
-      <section className="py-28 md:py-40">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
-          <div className="grid md:grid-cols-5 gap-12 md:gap-20">
-            <Reveal delay={0.1} className="md:col-span-3 order-2 md:order-1">
+      <section className="py-32 md:py-48">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16">
+          <div className="grid md:grid-cols-12 gap-12 md:gap-6">
+            <Reveal delay={0.1} className="md:col-span-7 order-2 md:order-1">
               <div className="space-y-6">
                 {interiorDesigner.description.map((para, i) => (
-                  <p key={i} className="text-[#6b6b6b] text-[15px] leading-[1.95] font-light">{para}</p>
+                  <p key={i} className="text-white/30 text-[14px] leading-[2] font-light">{para}</p>
                 ))}
               </div>
             </Reveal>
-            <Reveal className="md:col-span-2 order-1 md:order-2">
-              <p className="text-gold text-[11px] tracking-[0.3em] uppercase mb-5">Interior Design</p>
-              <h2 className="font-serif text-[30px] md:text-[44px] leading-[1.1] tracking-tight mb-6">
+            <Reveal className="md:col-span-4 md:col-start-9 order-1 md:order-2">
+              <p className="text-sand text-[10px] tracking-[0.4em] uppercase mb-8">Interior Design</p>
+              <h2 className="font-serif text-[clamp(2rem,3.5vw,3rem)] leading-[1.05] tracking-tight text-white mb-10">
                 {interiorDesigner.name}
               </h2>
-              <p className="text-[#6b6b6b] text-[15px] leading-[1.95] font-light">
-                Warm timber joinery, considered lighting, and a layout that feels open and airy — Ezel&apos;s interiors complement the schooner&apos;s traditional lines.
+              <p className="text-white/30 text-[14px] leading-[2] font-light">
+                Warm timber joinery, considered lighting, and a layout that feels open and airy — complementing the vessel&apos;s traditional lines.
               </p>
             </Reveal>
           </div>
@@ -106,20 +107,21 @@ export default function Design() {
       </section>
 
       {/* ━━ CTA ━━ */}
-      <section className="bg-navy text-white py-20">
-        <div className="max-w-3xl mx-auto px-6 md:px-16 text-center">
+      <section className="border-t border-white/[0.04] py-24 md:py-32">
+        <div className="max-w-3xl mx-auto px-8 md:px-16 text-center">
           <Reveal>
-            <h2 className="font-serif text-[28px] md:text-[36px] text-white leading-[1.15] tracking-tight mb-6">
+            <h2 className="font-serif text-[clamp(1.8rem,3vw,2.8rem)] text-white leading-[1.1] tracking-tight mb-6">
               Schedule a Private Viewing
             </h2>
-            <p className="text-white/40 text-[15px] leading-[1.95] font-light mb-8">
+            <p className="text-white/20 text-[14px] leading-[2] font-light mb-10">
               Experience {yacht.name}&apos;s design in person. Contact Georges Bourgoignie to arrange a visit.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-3.5 bg-gold text-navy text-sm font-semibold uppercase tracking-[0.12em] hover:bg-gold-light transition-colors"
+              className="group inline-flex items-center gap-4 text-sand text-[11px] tracking-[0.2em] uppercase border border-sand/30 px-8 py-4 hover:bg-sand hover:text-obsidian transition-all duration-500"
             >
               Contact Broker
+              <span className="group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
             </Link>
           </Reveal>
         </div>

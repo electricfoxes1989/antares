@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,73 +18,108 @@ const navLinks = [
 export default function Navigation() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo / Yacht name */}
-            <Link href="/" className="text-white text-sm tracking-[0.25em] uppercase font-light">
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-obsidian/90 backdrop-blur-md border-b border-white/[0.04]"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16">
+          <div className="flex items-center justify-between h-20 md:h-24">
+            <Link
+              href="/"
+              className="text-white text-[11px] tracking-[0.4em] uppercase font-light hover:text-sand transition-colors duration-300"
+            >
               {yacht.name}
             </Link>
 
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-10">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-xs tracking-[0.15em] uppercase transition-colors ${
+                  className={`relative text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 ${
                     pathname === link.href
-                      ? "text-gold"
-                      : "text-white/60 hover:text-white"
+                      ? "text-sand"
+                      : "text-white/40 hover:text-white/80"
                   }`}
                 >
                   {link.label}
+                  {pathname === link.href && (
+                    <motion.span
+                      layoutId="nav-indicator"
+                      className="absolute -bottom-1 left-0 right-0 h-[1px] bg-sand"
+                    />
+                  )}
                 </Link>
               ))}
             </div>
 
-            {/* Mobile toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden text-white/70 hover:text-white"
+              className="md:hidden text-white/60 hover:text-white transition-colors"
               aria-label="Menu"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                {mobileOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
-                )}
-              </svg>
+              <div className="flex flex-col gap-1.5 w-6">
+                <motion.span
+                  animate={mobileOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+                  className="block h-[1px] w-full bg-current"
+                />
+                <motion.span
+                  animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+                  className="block h-[1px] w-full bg-current"
+                />
+                <motion.span
+                  animate={mobileOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                  className="block h-[1px] w-full bg-current"
+                />
+              </div>
             </button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-0 z-40 bg-navy pt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-40 bg-obsidian flex items-center justify-center"
           >
-            <div className="flex flex-col items-center gap-8 pt-12">
-              {navLinks.map((link) => (
-                <Link
+            <div className="flex flex-col items-center gap-10">
+              {navLinks.map((link, i) => (
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`text-lg tracking-[0.2em] uppercase ${
-                    pathname === link.href ? "text-gold" : "text-white/60"
-                  }`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.06 }}
                 >
-                  {link.label}
-                </Link>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`text-2xl tracking-[0.3em] uppercase font-light transition-colors ${
+                      pathname === link.href ? "text-sand" : "text-white/30 hover:text-white/60"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.div>

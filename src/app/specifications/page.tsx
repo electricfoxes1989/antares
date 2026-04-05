@@ -60,62 +60,59 @@ export default function Specifications() {
   return (
     <>
       {/* ━━ HERO ━━ */}
-      <section className="bg-navy pt-32 pb-16 md:pt-40 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
+      <section className="bg-obsidian pt-36 pb-20 md:pt-44 md:pb-28">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <Reveal>
-            <p className="text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Technical</p>
-            <h1 className="font-serif text-white text-4xl md:text-6xl tracking-tight">
+            <p className="text-sand text-[10px] tracking-[0.4em] uppercase mb-5">Technical</p>
+            <h1 className="font-serif text-white text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-tight">
               Full Specifications
             </h1>
-            <p className="text-white/50 text-lg mt-4">{yacht.name} &middot; {yacht.tagline}</p>
+            <p className="text-white/20 text-[14px] mt-5 font-light">
+              {yacht.name} &middot; {yacht.tagline}
+            </p>
           </Reveal>
         </div>
       </section>
 
       {/* ━━ SPEC GROUPS ━━ */}
-      <section className="py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
-          <div className="grid md:grid-cols-5 gap-12 md:gap-20">
+      <section className="py-24 md:py-36 border-t border-white/[0.04]">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16">
+          <div className="grid md:grid-cols-12 gap-12 md:gap-6">
             {/* Sidebar summary */}
-            <Reveal className="md:col-span-2">
-              <div className="md:sticky md:top-28">
-                <div className="grid grid-cols-2 gap-8 mb-12">
-                  <div className="text-center">
-                    <p className="text-4xl font-light text-[#1a1a1a]">{yacht.guests}</p>
-                    <p className="text-[#aaa] text-[10px] tracking-[0.25em] uppercase mt-2">Guests</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-4xl font-light text-[#1a1a1a]">{yacht.cabins}</p>
-                    <p className="text-[#aaa] text-[10px] tracking-[0.25em] uppercase mt-2">Cabins</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-4xl font-light text-[#1a1a1a]">{yacht.crew}</p>
-                    <p className="text-[#aaa] text-[10px] tracking-[0.25em] uppercase mt-2">Crew</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-4xl font-light text-[#1a1a1a]">40m</p>
-                    <p className="text-[#aaa] text-[10px] tracking-[0.25em] uppercase mt-2">Length</p>
-                  </div>
+            <Reveal className="md:col-span-3">
+              <div className="md:sticky md:top-32">
+                <div className="grid grid-cols-2 gap-10 mb-14">
+                  {[
+                    { value: yacht.guests, label: "Guests" },
+                    { value: yacht.cabins, label: "Cabins" },
+                    { value: yacht.crew, label: "Crew" },
+                    { value: "40m", label: "Length" },
+                  ].map((s) => (
+                    <div key={s.label} className="text-center">
+                      <p className="text-white text-3xl font-light">{s.value}</p>
+                      <p className="text-white/15 text-[9px] tracking-[0.3em] uppercase mt-2">{s.label}</p>
+                    </div>
+                  ))}
                 </div>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center w-full px-8 py-3.5 bg-navy text-white text-sm font-semibold uppercase tracking-[0.12em] hover:bg-navy-light transition-colors"
+                  className="w-full inline-flex items-center justify-center text-sand text-[11px] tracking-[0.2em] uppercase border border-sand/30 px-6 py-4 hover:bg-sand hover:text-obsidian transition-all duration-500"
                 >
-                  Request Full Spec Sheet
+                  Request Spec Sheet
                 </Link>
               </div>
             </Reveal>
 
             {/* Spec tables */}
-            <div className="md:col-span-3 space-y-12">
+            <div className="md:col-span-8 md:col-start-5 space-y-16">
               {specs.map((group) => (
                 <Reveal key={group.category}>
-                  <h3 className="text-[12px] tracking-[0.2em] uppercase text-[#aaa] mb-4">{group.category}</h3>
-                  <div className="border-t border-black/[0.08]">
+                  <h3 className="text-white/20 text-[10px] tracking-[0.3em] uppercase mb-6">{group.category}</h3>
+                  <div className="border-t border-white/[0.06]">
                     {group.items.map((item) => (
-                      <div key={item.label} className="flex justify-between py-3.5 border-b border-black/[0.05]">
-                        <span className="text-[#888] text-[14px]">{item.label}</span>
-                        <span className="text-[#1a1a1a] text-[14px] font-medium text-right">{item.value}</span>
+                      <div key={item.label} className="flex justify-between py-4 border-b border-white/[0.04]">
+                        <span className="text-white/20 text-[13px]">{item.label}</span>
+                        <span className="text-white/60 text-[13px] font-light text-right">{item.value}</span>
                       </div>
                     ))}
                   </div>
@@ -127,20 +124,21 @@ export default function Specifications() {
       </section>
 
       {/* ━━ CTA ━━ */}
-      <section className="bg-navy text-white py-20">
-        <div className="max-w-3xl mx-auto px-6 md:px-16 text-center">
+      <section className="border-t border-white/[0.04] py-24 md:py-32">
+        <div className="max-w-3xl mx-auto px-8 md:px-16 text-center">
           <Reveal>
-            <h2 className="font-serif text-[28px] md:text-[36px] text-white leading-[1.15] tracking-tight mb-6">
+            <h2 className="font-serif text-[clamp(1.8rem,3vw,2.8rem)] text-white leading-[1.1] tracking-tight mb-6">
               Want the complete specification document?
             </h2>
-            <p className="text-white/40 text-[15px] leading-[1.95] font-light mb-8">
+            <p className="text-white/20 text-[14px] leading-[2] font-light mb-10">
               Georges can provide the full technical specification, survey reports, and classification documentation.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-3.5 bg-gold text-navy text-sm font-semibold uppercase tracking-[0.12em] hover:bg-gold-light transition-colors"
+              className="group inline-flex items-center gap-4 text-sand text-[11px] tracking-[0.2em] uppercase border border-sand/30 px-8 py-4 hover:bg-sand hover:text-obsidian transition-all duration-500"
             >
               Contact Broker
+              <span className="group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
             </Link>
           </Reveal>
         </div>
