@@ -1,6 +1,8 @@
-import { Link } from "wouter";
-import Reveal from "../components/Reveal";
-import { yacht } from "../data/yacht";
+"use client";
+
+import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import { yacht } from "@/data/yacht";
 
 const specs = [
   {

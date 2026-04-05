@@ -1,5 +1,7 @@
-import Reveal from "../components/Reveal";
-import { yacht } from "../data/yacht";
+"use client";
+
+import Reveal from "@/components/Reveal";
+import { yacht } from "@/data/yacht";
 
 export default function Contact() {
   return (

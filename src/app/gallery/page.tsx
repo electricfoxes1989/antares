@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Reveal from "../components/Reveal";
-import { yacht } from "../data/yacht";
+import Reveal from "@/components/Reveal";
+import { yacht } from "@/data/yacht";
 
 export default function Gallery() {
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);

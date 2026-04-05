@@ -1,5 +1,5 @@
-import { Link } from "wouter";
-import { yacht } from "../data/yacht";
+import Link from "next/link";
+import { yacht } from "@/data/yacht";
 
 export default function Footer() {
   return (

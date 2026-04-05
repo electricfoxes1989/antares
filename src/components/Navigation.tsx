@@ -1,7 +1,10 @@
+"use client";
+
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { yacht } from "../data/yacht";
+import { yacht } from "@/data/yacht";
 
 const navLinks = [
   { href: "/", label: "Overview" },
@@ -13,7 +16,7 @@ const navLinks = [
 ];
 
 export default function Navigation() {
-  const [location] = useLocation();
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -33,7 +36,7 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   className={`text-xs tracking-[0.15em] uppercase transition-colors ${
-                    location === link.href
+                    pathname === link.href
                       ? "text-gold"
                       : "text-white/60 hover:text-white"
                   }`}
@@ -77,7 +80,7 @@ export default function Navigation() {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className={`text-lg tracking-[0.2em] uppercase ${
-                    location === link.href ? "text-gold" : "text-white/60"
+                    pathname === link.href ? "text-gold" : "text-white/60"
                   }`}
                 >
                   {link.label}

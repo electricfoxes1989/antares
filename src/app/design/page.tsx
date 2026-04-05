@@ -1,6 +1,8 @@
-import { Link } from "wouter";
-import Reveal from "../components/Reveal";
-import { yacht, designer } from "../data/yacht";
+"use client";
+
+import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import { yacht, designer } from "@/data/yacht";
 
 export default function Design() {
   const { navalArchitect, interiorDesigner } = designer;
@@ -96,7 +98,7 @@ export default function Design() {
                 {interiorDesigner.name}
               </h2>
               <p className="text-[#6b6b6b] text-[15px] leading-[1.95] font-light">
-                Warm timber joinery, considered lighting, and a layout that feels open and airy — Ezel's interiors complement the schooner's traditional lines.
+                Warm timber joinery, considered lighting, and a layout that feels open and airy — Ezel&apos;s interiors complement the schooner&apos;s traditional lines.
               </p>
             </Reveal>
           </div>
@@ -111,7 +113,7 @@ export default function Design() {
               Schedule a Private Viewing
             </h2>
             <p className="text-white/40 text-[15px] leading-[1.95] font-light mb-8">
-              Experience {yacht.name}'s design in person. Contact Georges Bourgoignie to arrange a visit.
+              Experience {yacht.name}&apos;s design in person. Contact Georges Bourgoignie to arrange a visit.
             </p>
             <Link
               href="/contact"

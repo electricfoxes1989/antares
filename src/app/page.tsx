@@ -1,7 +1,9 @@
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Link } from "wouter";
-import Reveal from "../components/Reveal";
-import { yacht } from "../data/yacht";
+import Reveal from "@/components/Reveal";
+import { yacht } from "@/data/yacht";
 
 export default function Home() {
   return (

@@ -1,6 +1,8 @@
-import { Link } from "wouter";
-import Reveal from "../components/Reveal";
-import { yacht, shipyard } from "../data/yacht";
+"use client";
+
+import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import { yacht, shipyard } from "@/data/yacht";
 
 export default function Shipyard() {
   return (
