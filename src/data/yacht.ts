@@ -37,7 +37,7 @@ export const yacht = {
     "Extensive spare parts inventory included",
     "Lloyd's Register 20-year special survey completing 2025",
   ],
-  videoUrl: "https://www.youtube.com/embed/c0KpRBNzq4I?start=7",
+  videoUrl: "https://www.youtube.com/embed/COaNe17u4BA",
   heroImage: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663323529567/TQwomYMxnNmmsboh.jpg",
   images: [
     { url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663323529567/TQwomYMxnNmmsboh.jpg", label: "At Sea", category: "Exterior" },
